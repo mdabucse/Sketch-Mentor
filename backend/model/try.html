@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Flowchart</title>
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Mobile App Development Process</h2>
+
+    <div class="mermaid">
+        graph LR
+  subgraph Data Protection and Privacy
+    A[Data protection and privacy fundamentals] --> B[Data breaches]
+    B --> C[Privacy controls]
+    C --> D[Privacy management]
+  end
+
+  subgraph Security
+    E[Security fundamentals] --> F[Incident response]
+    F --> G[Security controls]
+    G --> H[Security management]
+  end
+
+  subgraph Compliance
+    I[Compliance fundamentals] --> J[Compliance assessment]
+    J --> K[Compliance controls]
+    K --> L[Compliance management]
+  end
+
+  subgraph Risk Management
+    M[Risk management fundamentals] --> N[Risk assessment]
+    N --> O[Risk controls]
+    O --> P[Risk management]
+  end
+
+  subgraph Business Continuity
+    Q[Business continuity fundamentals] --> R[Business impact analysis]
+    R --> S[Business continuity controls]
+    S --> T[Business continuity management]
+  end
+
+  A --> E --> I --> M --> Q
+  B --> F --> J --> N --> R
+  C --> G --> K --> O --> S
+  D --> H --> L --> P --> T
+    </div>
+
+</body>
+</html>
