@@ -1,0 +1,250 @@
+/* General Page Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    /* padding-top: 60px; */
+}
+
+/* Header */
+.header2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    font-size: 16px;
+}
+
+.logo {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.login {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login:hover {
+    color: #000;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+h1 strong {
+    font-weight: 900;
+}
+
+.subtext {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.proceed-btn1 {
+    display: inline-block;
+    background-color: #e6f4ea;
+    color: #137333;
+    font-size: 16px;
+    size: 20px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    height: 40px;
+    width: 120px;
+    margin-top: 10px;
+}
+
+.proceed-btn1:hover {
+    background-color: #c8ebd6;
+}
+
+/* Floating Equation */
+.equation {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    font-style: italic;
+    font-size: 20px;
+}
+
+/* Minimal Icons */
+.icon {
+    position: absolute;
+    right: 15%;
+    top: 55%;
+}
+
+/* Blocks */
+.blocks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.block {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.block1 {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 30px;
+    width: 40 0px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.block2 {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 30px;
+    width: 200px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+.block1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.block2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.block-icon {
+    font-size: 40px;
+    color: #137333;
+    margin-bottom: 10px;
+}
+
+.block-icon1 {
+    font-size: 60px;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.link-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    width: 400px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-input1 {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.proceed-btn {
+    background-color: #137333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.spinner {
+    border: 4px solid rgba(37, 37, 37, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .proceed-btn:disabled {
+    background-color: rgb(197, 236, 201);
+    cursor: not-allowed;
+  }
+  
+  
+
+.proceed-btn:hover {
+    background-color: #0e5d27;
+}
+
+.block .block1 .block2 p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.div2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.div2-part2 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

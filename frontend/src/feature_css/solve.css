@@ -1,0 +1,739 @@
+/* Enhanced Math Problem Solver UI - Interactive Version */
+
+/* solve.css */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap'); */
+/* 
+:root {
+  --primary-color: #6c5ce7;
+  --primary-light: #a29bfe;
+  --secondary-color: #2d3436;
+  --accent-color: #00cec9;
+  --text-color: #2d3436;
+  --light-bg: #f9f9f9;
+  --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --neon-glow: 0 0 5px rgba(108, 92, 231, 0.5);
+} */
+
+body {
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  background-image: 
+    radial-gradient(circle at 25% 15%, rgba(108, 92, 231, 0.05) 2%, transparent 40%), 
+    radial-gradient(circle at 75% 85%, rgba(0, 206, 201, 0.05) 2%, transparent 40%);
+  min-height: 100vh;
+}
+
+.solve-app {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-bg);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.solve-app:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #137333;
+  font-weight: 600;
+  font-size: 2.2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #137333;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.solve-app:hover h1::after {
+  width: 120px;
+}
+
+.input-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  padding: 5px;
+  transition: all 0.3s ease;
+}
+
+.input-form:focus-within {
+  box-shadow: 0 5px 20px rgba(108, 92, 231, 0.2);
+  transform: translateY(-2px);
+}
+
+input {
+  flex: 1;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  font-family: 'Fira Code', monospace;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #a0a0a0;
+  transition: all 0.3s ease;
+}
+
+input:focus::placeholder {
+  opacity: 0.5;
+  transform: translateX(5px);
+}
+
+.math-symbols {
+  position: absolute;
+  top: 50%;
+  right: 80px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 10px;
+  opacity: 0.5;
+}
+
+.math-symbol {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  user-select: none;
+}
+
+.math-symbol:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+  transform: scale(1.1);
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(108, 92, 231, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+button:hover:not(:disabled)::before {
+  left: 0;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: #b5ebc7;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #b5ebc7;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.canvas-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  transition: all 0.3s ease;
+}
+
+.canvas-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  transition: height 0.3s ease;
+}
+
+.canvas-container:hover::before {
+  height: 8px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: #a0a0a0;
+  text-align: center;
+}
+
+.empty-state p {
+  margin-top: 15px;
+  max-width: 280px;
+}
+
+.floating-math-symbols {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.floating-symbol {
+  position: absolute;
+  color: rgba(108, 92, 231, 0.1);
+  font-size: 2rem;
+  animation-name: float;
+  animation-duration: calc(25s + (var(--random) * 15s));
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--random) * -20s);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Loading animation */
+.loading-indicator {
+  position: relative;
+}
+
+.loading-indicator::after {
+  content: '...';
+  position: absolute;
+  animation: ellipsis 1.5s infinite;
+  width: 1.5em;
+}
+
+@keyframes ellipsis {
+  0% { content: '.'; }
+  33% { content: '..'; }
+  66% { content: '...'; }
+  100% { content: '.'; }
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(30deg);
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color) 50%, var(--accent-color) 50%);
+}
+
+/* Make iframe more responsive */
+.canvas-container iframe {
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+
+.canvas-container:hover iframe {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Copy button for results */
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  /* transition: all 0.2s ease; */
+  opacity: 0;
+}
+
+.canvas-container:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Example suggestions */
+.example-suggestions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.example-chip {
+  background: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(108, 92, 231, 0.2);
+}
+
+.example-chip:hover {
+  background: rgba(108, 92, 231, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Advanced animation for the submit button */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(108, 92, 231, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0); }
+}
+
+/* button:not(:disabled) {
+  animation: pulse 2s infinite;
+} */
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .solve-app {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .input-form {
+    flex-direction: column;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  .example-suggestions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .example-chip {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+/* Dark mode (activated via theme-toggle) */
+.dark-mode {
+  --light-bg: #1a1a2e;
+  --text-color: #e6e6e6;
+  color: var(--text-color);
+}
+
+.dark-mode .solve-app {
+  background-color: #1a1a2e;
+}
+
+.dark-mode .input-form,
+.dark-mode .canvas-container,
+.dark-mode input,
+.dark-mode .example-chip {
+  background-color: #16213e;
+  color: #e6e6e6;
+}
+
+.dark-mode input::placeholder {
+  color: #8a8a8a;
+}
+
+.dark-mode .empty-state {
+  color: #8a8a8a;
+}
+
+.dark-mode .floating-symbol {
+  color: rgba(255, 255, 255, 0.05);
+}
+/* Add these styles to your solve.css file */
+
+.math-loading-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding: 2rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(0, 206, 201, 0.05));
+  border-radius: 8px;
+}
+
+.loading-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.loading-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+.loading-header h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  border-radius: 2px;
+}
+
+.agent-steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.agent-step {
+  display: flex;
+  gap: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0.5;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .agent-step {
+  background-color: rgba(22, 33, 62, 0.8);
+}
+
+.agent-step.active {
+  opacity: 1;
+  transform: translateX(0);
+  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.15);
+}
+
+.agent-step.working {
+  border-left: 3px solid var(--primary-color);
+}
+
+.agent-step.completed {
+  border-left: 3px solid var(--accent-color);
+}
+
+.step-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .step-icon {
+  background-color: #2a2a4a;
+}
+
+.step-icon-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.agent-step.active .step-icon {
+  background-color: rgba(108, 92, 231, 0.2);
+}
+
+.agent-step.active .step-icon-inner {
+  background-color: var(--primary-color);
+}
+
+.agent-step.working .step-icon-inner {
+  animation: pulse-icon 1s infinite;
+}
+
+.agent-step.completed .step-icon {
+  background-color: rgba(0, 206, 201, 0.2);
+}
+
+.agent-step.completed .step-icon-inner {
+  background-color: var(--accent-color);
+  position: relative;
+}
+
+.agent-step.completed .step-icon-inner::before,
+.agent-step.completed .step-icon-inner::after {
+  content: '';
+  position: absolute;
+  background-color: var(--accent-color);
+}
+
+.agent-step.completed .step-icon-inner::before {
+  width: 6px;
+  height: 2px;
+  transform: rotate(45deg) translate(-1px, 4px);
+}
+
+.agent-step.completed .step-icon-inner::after {
+  width: 10px;
+  height: 2px;
+  transform: rotate(-45deg) translate(2px, 2px);
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.step-name {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.step-description {
+  font-size: 0.8rem;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .step-description {
+  color: #aaa;
+}
+
+.agent-step.active .step-name {
+  color: var(--primary-color);
+}
+
+.agent-step.completed .step-name {
+  color: var(--accent-color);
+}
+
+/* Floating math symbols in the background */
+.math-symbols-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-math-symbol {
+  position: absolute;
+  top: -50px;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  animation: float-up 8s linear infinite;
+  user-select: none;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Equation display */
+.equation-display {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  box-shadow: 0 3px 10px rgba(108, 92, 231, 0.15);
+  animation: pulse-equation 2s infinite;
+  text-align: center;
+  min-width: 200px;
+}
+
+.dark-mode .equation-display {
+  background-color: rgba(22, 33, 62, 0.9);
+}
+
+@keyframes pulse-equation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0);
+  }
+}
+
+@keyframes pulse-icon {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .agent-steps-container {
+    gap: 0.8rem;
+  }
+  
+  .agent-step {
+    padding: 0.6rem;
+  }
+  
+  .step-name {
+    font-size: 0.85rem;
+  }
+  
+  .step-description {
+    font-size: 0.75rem;
+  }
+  
+  .equation-display {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}

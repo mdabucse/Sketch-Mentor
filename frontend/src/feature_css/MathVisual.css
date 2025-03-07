@@ -1,0 +1,444 @@
+/* Video.css */
+/* // MathVisual.css */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap'); */
+
+/* :root {
+  --primary-color: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --secondary-color: #06b6d4;
+  --accent-color: #f59e0b;
+  --background-color: #f8fafc;
+  --card-color: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  /* color: var(--text-primary); */
+  line-height: 1.6;
+}
+
+/* Main container */
+.math-viz-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.math-viz-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.math-viz-header h1 {
+  color: #137333;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.math-viz-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.math-viz-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Input section */
+.math-viz-input-section {
+  width: 100%;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.math-input {
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+.math-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.info-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 250px;
+  padding: 0.75rem;
+  background-color: var(--text-primary);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+}
+
+.examples-section {
+  margin-bottom: 1.5rem;
+}
+
+.examples-section p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.example-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.example-chip {
+  padding: 0.5rem 1rem;
+  background-color: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  /* transition: all 0.2s ease; */
+  color: var(--text-primary);
+  width: fit-content;
+}
+
+.example-chip:hover {
+  background-color: #e2e8f0;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.submit-btn, .reset-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 150px;
+  height: 50px;
+}
+
+.submit-btn {
+  background-color: #137333;
+  color: white;
+}
+
+.submit-btn:hover {
+  background-color: #b5ebc7;
+  color: black;
+}
+
+.reset-btn {
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
+}
+
+.reset-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.submit-btn:disabled, .reset-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Pipeline visualization */
+.pipeline-visualization {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.pipeline-visualization h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+  text-align: center;
+}
+
+.pipeline-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pipeline-stage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.pipeline-stage.active {
+  border-color: var(--primary-color);
+  background-color: rgba(99, 102, 241, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.pipeline-stage.completed {
+  border-color: var(--success-color);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.stage-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.active .stage-icon {
+  background-color: var(--primary-color);
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.completed .stage-icon {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.stage-info {
+  flex-grow: 1;
+}
+
+.stage-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.stage-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* Video result */
+.video-result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.video-result h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+  text-align: center;
+}
+
+.video-container {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
+  box-shadow: var(--shadow-md);
+}
+
+.result-video {
+  width: 100%;
+  display: block;
+}
+
+.video-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.control-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.play-btn:hover {
+  background-color: #d97706;
+}
+
+/* Footer */
+.math-viz-footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Error message */
+.error-message {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: var(--error-color);
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .math-viz-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .math-viz-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .example-chips {
+    flex-direction: column;
+  }
+  
+  .example-chip {
+    text-align: left;
+  }
+  /* Add these styles to your existing video.css file */
+
+.video-path-info {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+  }
+  
+  .video-path-text {
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+  }
+  
+  /* Add these debugging styles */
+  .video-container {
+    position: relative;
+    min-height: 240px;
+  }
+  
+  .video-container::before {
+    content: attr(data-status);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Hidden by default, shown through JS when needed */
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 4px;
+    z-index: 5;
+  }
+  
+  /* Modify the error message to make it more visible */
+  .error-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    color: var(--error-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}

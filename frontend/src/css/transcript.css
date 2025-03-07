@@ -1,0 +1,50 @@
+.transcript-line {
+    margin-bottom: 15px;  /* Space between each line */
+    padding-left: 20px;   /* Left indentation */
+    padding-right: 20px;  /* Right indentation */
+    line-height: 1.6;     /* Line spacing for readability */
+    text-align: justify;  /* Justify text for better readability */
+  }
+  
+  
+  .transcript-line + .transcript-line {
+    border-top: 1px solid #e0e0e0;  /* Separator between each point */
+    padding-top: 15px;  /* Extra spacing after each separator */
+  }
+
+  .transcript {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    height: 250px;
+    overflow-y: scroll;
+    margin-right: 10px;
+    background-color: rgb(231, 242, 232);
+    color: black;
+    margin-left: -30px;
+    width: 450px;
+    margin-bottom: 15px;
+  }
+
+  .transcript-line {
+    margin-bottom: 15px;  /* Space between each line */
+    padding-left: 20px;   /* Left indentation */
+    padding-right: 20px;  /* Right indentation */
+    line-height: 1.6;     /* Line spacing for readability */
+    text-align: justify;  /* Justify text for better readability */
+  }
+  
+  /* .transcript-line:first-child {
+    font-weight: bold;  Bold for the first line
+  } */
+  
+  /* .transcript-line:last-child {
+    font-style: italic;  Italic for the last line
+  }  */
+  
+  .transcript-line + .transcript-line {
+    border-top: 1px solid #e0e0e0;  /* Separator between each point */
+    padding-top: 15px;  /* Extra spacing after each separator */
+  }

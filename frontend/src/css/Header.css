@@ -1,0 +1,9 @@
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff; /* Match your theme */
+    z-index: 1000;
+    height: 70px;
+  }
+  
