@@ -1,0 +1,1 @@
+Error in OpenRouter API: 'NoneType' object is not subscriptable
