@@ -44,5 +44,5 @@ Each service runs on its own FastAPI application, making it easy to maintain and
 
 1. *Clone the Repository:*
    ```bash
-   git clone https://github.com/yourusername/agentic-visualization-system.git
-   cd Agent
+   git clone https://github.com/mdabucse/Sketch-Mentor.git
+   cd backend/Agent
