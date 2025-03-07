@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/1185818338_2700920328_223132457.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_4053031551_1698674566.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_3394500337_1078597171.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_1909473327_4001972039.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_4217992463_4106097316.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_2826188616_3587002012.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_4217992463_1434832325.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_2048086805_2618681667.mp4'
+file 'file:D:/Temp/AI_MATH_AGENT/media/videos/Visualization_Video/480p15/partial_movie_files/PythagoreanTheorem/624642324_2844360058_156461411.mp4'
